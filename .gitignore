@@ -1,0 +1,11 @@
+/build/
+/results/
+__pycache__/
+*.pyc
+*.exe
+*.o
+*.obj
+*.vcd
+*.fst
+.DS_Store
+Thumbs.db
