@@ -1,0 +1,45 @@
+{
+  "traces_per_campaign": 5000,
+  "n_fixed": 2500,
+  "n_random": 2500,
+  "threshold_abs_t": 4.5,
+  "centering": "pooled fixed and random means",
+  "pair_selection": "predefined RTL output-share identities; Q=1 per module",
+  "masked_output_widths": {
+    "sec_and": 32,
+    "sec_add": 13,
+    "a2b_core": 13
+  },
+  "fixed_inputs": {
+    "sec_and": "x=y=0xffffffff",
+    "sec_add_allones": "a=b=0x1fff",
+    "sec_add_zero": "a=b=0",
+    "sec_add_mixed": "a=0x0a53,b=0x136c",
+    "a2b_core": "x=1234"
+  },
+  "sec_add_hd": "per-trace mean of five g0_r/g1_r state[3] entry HD values; predecessor state[2] then state[6]",
+  "a2b_hd": "raw0_r/raw1_r snapshots: ST_ADD1_RUN to ST_FILL_RND2 entry",
+  "intervention": "three matched reset-per-trace campaigns; returns at cycles 22 and 25, 26 total cycles",
+  "threshold_correction": "none; preselected observations",
+  "retained_state": "first order 6P scalars; selected-pair second order 18Q scalars; excludes stimuli/audit records",
+  "pqc_coverage": {
+    "CBD2-256": {
+      "positions": 256,
+      "dedicated_traces": 15000,
+      "batch_structure": "3 batches of 5000 feeding one accumulated reducer"
+    },
+    "NTT-256": {
+      "positions": 896,
+      "dedicated_traces": 5000,
+      "observations": 4480000,
+      "first_order_state_scalars": 5376
+    }
+  },
+  "archived_environment": {
+    "python": "3.12.14",
+    "gcc": "15.2.0",
+    "yosys": "0.66"
+  },
+  "upstream_base_commit": "46dbacf0975c85877db49885c2f13a8bb7767297",
+  "upstream_snapshot_note": "base commit recorded by upstream archive; archive also records local edits; file checksums anchor the actual inputs"
+}

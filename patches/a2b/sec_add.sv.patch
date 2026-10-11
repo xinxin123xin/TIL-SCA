@@ -1,0 +1,56 @@
+--- a/sec_add.sv
++++ b/sec_add.sv
+@@ -1,6 +1,5 @@
+ // Boolean-domain secure adder (Kogge-Stone style over shared inputs).
+ 
+-(* keep_hierarchy = "yes" *)
+ module sec_add #(
+   parameter WIDTH    = 13,
+   parameter N_STAGES = 4    // ceil(log2(WIDTH))
+@@ -37,7 +36,7 @@
+   // FSM
+   // -------------------------------------------------------------------------
+   localparam ST_IDLE     = 4'd0;
+-  localparam ST_TRIANGLE = 4'd1;  // compute initial (g, p) — launch SecAnd+SecOR
++  localparam ST_TRIANGLE = 4'd1;  // compute initial (g, p) 鈥?launch SecAnd+SecOR
+   localparam ST_TRI_WAIT = 4'd2;  // wait for triangle SecAnd/SecOR done
+   localparam ST_BOX_AND1 = 4'd3;  // box stage: compute P_hi AND G_lo
+   localparam ST_BOX_W1   = 4'd4;  // wait for first AND
+@@ -80,7 +79,7 @@
+ 
+   // -------------------------------------------------------------------------
+   // SecOR instance (shared, time-multiplexed)
+-  // Uses its own sec_and internally — 1 cycle latency
++  // Uses its own sec_and internally 鈥?1 cycle latency
+   // -------------------------------------------------------------------------
+   reg              or_en;
+   reg  [WIDTH-1:0] or_a0, or_a1, or_b0, or_b1, or_rnd;
+@@ -190,8 +189,8 @@
+         end
+ 
+         // -----------------------------------------------------------------
+-        // Triangle: g = AND(a, b), p = OR(a, b) — both launch in parallel
+-        // SecAnd computes g, SecOR computes p — both take 1 cycle
++        // Triangle: g = AND(a, b), p = OR(a, b) 鈥?both launch in parallel
++        // SecAnd computes g, SecOR computes p 鈥?both take 1 cycle
+         // -----------------------------------------------------------------
+         ST_TRIANGLE: begin
+           // Launch SecAnd for generate: g = a AND b
+@@ -228,7 +227,7 @@
+         end
+ 
+         // -----------------------------------------------------------------
+-        // Box stage — part 1: compute P_hi AND G_lo
++        // Box stage 鈥?part 1: compute P_hi AND G_lo
+         // Kogge-Stone: G_new[i] = G[i] OR (P[i] AND G[i-2^j])
+         //              P_new[i] = P[i] AND P[i-2^j]
+         // First, compute temp = P[i] AND G[i-2^j]
+@@ -244,7 +243,7 @@
+             and_rnd <= rnd_slice(rnd_idx);
+             state_q <= ST_BOX_W1;
+           end else begin
+-            // All stages done — compute final sum
++            // All stages done 鈥?compute final sum
+             state_q <= ST_FINAL;
+           end
+         end

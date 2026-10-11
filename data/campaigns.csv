@@ -1,0 +1,16 @@
+campaign,module,condition,seed,n_fixed,n_random
+sec_and_default_seed0,sec_and,default,0,2500,2500
+sec_and_default_seed1,sec_and,default,1,2500,2500
+sec_and_default_seed2,sec_and,default,2,2500,2500
+sec_add_allones_seed0,sec_add,allones,0,2500,2500
+sec_add_allones_seed1,sec_add,allones,1,2500,2500
+sec_add_allones_seed2,sec_add,allones,2,2500,2500
+sec_add_zero_seed0,sec_add,zero,0,2500,2500
+sec_add_zero_seed1,sec_add,zero,1,2500,2500
+sec_add_zero_seed2,sec_add,zero,2,2500,2500
+sec_add_mixed_seed0,sec_add,mixed,0,2500,2500
+sec_add_mixed_seed1,sec_add,mixed,1,2500,2500
+sec_add_mixed_seed2,sec_add,mixed,2,2500,2500
+a2b_core_default_seed0,a2b_core,default,0,2500,2500
+a2b_core_default_seed1,a2b_core,default,1,2500,2500
+a2b_core_default_seed2,a2b_core,default,2,2500,2500

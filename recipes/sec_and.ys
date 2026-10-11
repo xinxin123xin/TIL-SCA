@@ -1,0 +1,9 @@
+read_verilog -sv -I. dom_and_tsim_top.sv
+hierarchy -check -top dom_and_tsim_top
+proc
+opt
+flatten -noscopeinfo
+opt_clean
+opt -full
+check
+write_json dom_and_flat.json

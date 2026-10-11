@@ -1,0 +1,44 @@
+--- a/sec_ops.sv
++++ b/sec_ops.sv
+@@ -1,6 +1,5 @@
+ // Higher-level secure operations built on sec_add and sec_and.
+ 
+-(* keep_hierarchy = "yes" *)
+ module sec_xor #(
+   parameter WIDTH = 13
+ ) (
+@@ -15,11 +14,10 @@
+ endmodule
+ 
+ // ============================================================================
+-// SecNOT — Combinational secure NOT (flip share 0 only)
++// SecNOT 鈥?Combinational secure NOT (flip share 0 only)
+ // For 2-share: ~x = ~x0 XOR x1 = (~x0, x1) since x = x0 XOR x1
+ // In 2's complement: ~x = -x - 1, which is correct for bitwise NOT.
+ // ============================================================================
+-(* keep_hierarchy = "yes" *)
+ module sec_not #(
+   parameter WIDTH = 13
+ ) (
+@@ -33,11 +31,10 @@
+ endmodule
+ 
+ // ============================================================================
+-// SecOR — Secure masked OR via De Morgan's law
++// SecOR 鈥?Secure masked OR via De Morgan's law
+ //   OR(a, b) = NOT(AND(NOT(a), NOT(b)))
+ // Latency: 1 cycle (from the internal sec_and)
+ // ============================================================================
+-(* keep_hierarchy = "yes" *)
+ module sec_or #(
+   parameter WIDTH = 13
+ ) (
+@@ -61,7 +58,7 @@
+   wire [WIDTH-1:0] nb0 = ~b0_i;
+   wire [WIDTH-1:0] nb1 =  b1_i;
+ 
+-  // AND(NOT(a), NOT(b)) — 1 cycle through register barrier
++  // AND(NOT(a), NOT(b)) 鈥?1 cycle through register barrier
+   wire [WIDTH-1:0] and_c0, and_c1;
+ 
+   sec_and #(.WIDTH(WIDTH)) u_and (

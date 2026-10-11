@@ -1,0 +1,7 @@
+module,seed,N,reported_cp_abs_delta
+sec_and,0,5000,7.35e-12
+sec_and,1,5000,3.72e-12
+sec_and,2,5000,3.57e-12
+a2b_core,0,5000,1.20e-14
+a2b_core,1,5000,3.62e-14
+a2b_core,2,5000,1.48e-14

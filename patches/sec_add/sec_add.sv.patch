@@ -1,0 +1,44 @@
+--- a/sec_add.sv
++++ b/sec_add.sv
+@@ -18,7 +18,20 @@
+   input  wire [(2+3*N_STAGES)*WIDTH-1:0] rnd_i,
+ 
+   output reg  [WIDTH-1:0]             s0_o, s1_o,    // shares of sum
+-  output reg                          done_o
++  output reg                          done_o,
++
++  // Debug observation ports (added for TVLA streaming experiment)
++  output wire [WIDTH-1:0]             dbg_g0_o, dbg_g1_o,
++  output wire [WIDTH-1:0]             dbg_p0_o, dbg_p1_o,
++  output wire [3:0]                   dbg_state_o,
++  output wire [2:0]                   dbg_stage_o,
++  output wire                         dbg_and_done_o,
++  output wire                         dbg_or_done_o,
++  output wire                         dbg_and_en_o,
++  output wire [WIDTH-1:0]             dbg_and_c0_o,
++  output wire [WIDTH-1:0]             dbg_and_c1_o,
++  output wire [WIDTH-1:0]             dbg_and_a0_o,
++  output wire [WIDTH-1:0]             dbg_and_b0_o
+ );
+ 
+   // -------------------------------------------------------------------------
+@@ -325,4 +338,19 @@
+     end
+   end
+ 
++  // Debug observation assignments
++  assign dbg_g0_o    = g0_r;
++  assign dbg_g1_o    = g1_r;
++  assign dbg_p0_o    = p0_r;
++  assign dbg_p1_o    = p1_r;
++  assign dbg_state_o = state_q;
++  assign dbg_stage_o = stage_cnt;
++  assign dbg_and_done_o = and_done;
++  assign dbg_or_done_o  = or_done;
++  assign dbg_and_en_o   = and_en;
++  assign dbg_and_c0_o   = and_c0;
++  assign dbg_and_c1_o   = and_c1;
++  assign dbg_and_a0_o   = and_a0;
++  assign dbg_and_b0_o   = and_b0;
++
+ endmodule

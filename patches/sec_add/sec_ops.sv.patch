@@ -1,0 +1,25 @@
+--- a/sec_ops.sv
++++ b/sec_ops.sv
+@@ -1,6 +1,5 @@
+ // Higher-level secure operations built on sec_add and sec_and.
+ 
+-(* keep_hierarchy = "yes" *)
+ module sec_xor #(
+   parameter WIDTH = 13
+ ) (
+@@ -19,7 +18,6 @@
+ // For 2-share: ~x = ~x0 XOR x1 = (~x0, x1) since x = x0 XOR x1
+ // In 2's complement: ~x = -x - 1, which is correct for bitwise NOT.
+ // ============================================================================
+-(* keep_hierarchy = "yes" *)
+ module sec_not #(
+   parameter WIDTH = 13
+ ) (
+@@ -37,7 +35,6 @@
+ //   OR(a, b) = NOT(AND(NOT(a), NOT(b)))
+ // Latency: 1 cycle (from the internal sec_and)
+ // ============================================================================
+-(* keep_hierarchy = "yes" *)
+ module sec_or #(
+   parameter WIDTH = 13
+ ) (

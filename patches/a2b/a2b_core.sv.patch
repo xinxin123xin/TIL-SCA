@@ -1,0 +1,61 @@
+--- a/a2b_core.sv
++++ b/a2b_core.sv
+@@ -1,19 +1,28 @@
+ // Boolean-masking core: arithmetic-to-Boolean share conversion.
+ 
+-(* keep_hierarchy = "yes" *)
+ module a2b_core (
+   input  wire        clk_i,
+   input  wire        rst_ni,
+ 
+   input  wire        start_i,
+-  input  wire [31:0] share0_i,     // arithmetic share 0 (x0)
+-  input  wire [31:0] share1_i,     // arithmetic share 1 (x1)
+-  input  wire [31:0] random_i,     // fresh randomness from PRNG
+-  input  wire        wide_mode_i,  // 0=13-bit (ML-KEM), 1=24-bit (ML-DSA)
+-
+-  output reg  [31:0] share0_o,     // boolean share 0 (y0)
+-  output reg  [31:0] share1_o,     // boolean share 1 (y1)
+-  output reg         done_o
++  input  wire [31:0] share0_i,
++  input  wire [31:0] share1_i,
++  input  wire [31:0] random_i,
++  input  wire        wide_mode_i,
++
++  // Testbench bypass: 17x24-bit randomness directly to sec_add
++  input  wire [407:0] rnd_bypass_i,
++
++  output reg  [31:0] share0_o,
++  output reg  [31:0] share1_o,
++  output reg         done_o,
++
++  // Debug observation for serial HD analysis
++  output wire [3:0]  dbg_state_o,
++  output wire [23:0] dbg_raw0_o,
++  output wire [23:0] dbg_raw1_o,
++  output wire [23:0] dbg_trial0_o,
++  output wire [23:0] dbg_trial1_o
+ );
+ 
+   localparam W_MAX    = 24;
+@@ -67,7 +76,7 @@
+     .a1_i    (add_a1),
+     .b0_i    (add_b0),
+     .b1_i    (add_b1),
+-    .rnd_i   (rnd_pool),
++    .rnd_i   (rnd_bypass_i),
+     .s0_o    (add_s0),
+     .s1_o    (add_s1),
+     .done_o  (add_done)
+@@ -233,4 +242,11 @@
+     end
+   end
+ 
++  // Debug observation assignments
++  assign dbg_state_o  = state_q;
++  assign dbg_raw0_o   = raw0_r;
++  assign dbg_raw1_o   = raw1_r;
++  assign dbg_trial0_o = trial0_r;
++  assign dbg_trial1_o = trial1_r;
++
+ endmodule

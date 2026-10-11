@@ -1,0 +1,54 @@
+--- a/rtl/sca_pqc_coprocessor_top.sv
++++ b/rtl/sca_pqc_coprocessor_top.sv
+@@ -146,6 +146,11 @@
+   (* keep = "true" *) (* keep_hierarchy = "true" *) reg [5:0]  op_reg;
+   (* keep = "true" *) (* keep_hierarchy = "true" *) reg        funct7_4_reg; // Q selector for mask ops
+   (* keep = "true" *) (* keep_hierarchy = "true" *) reg [31:0] result_reg;
++  // Controlled storage intervention: alternating MASKED_XOR return banks.
++  (* keep = "true" *) reg [31:0] share_return0_reg;
++  (* keep = "true" *) reg [31:0] share_return1_reg;
++  (* keep = "true" *) reg share_return_next_q;
++  (* keep = "true" *) reg share_return_select_q;
+ 
+   // =========================================================================
+   // ISE module outputs
+@@ -359,7 +364,9 @@
+ 
+       ST_RESULT_READY: begin
+         x_result_valid_o = 1'b1;
+-        x_result_data_o  = result_reg;
++        x_result_data_o  = (op_reg == `OP_MASKED_XOR)
++                           ? (share_return_select_q ? share_return1_reg : share_return0_reg)
++                           : result_reg;
+         if (x_result_ready_i)
+           state_d = ST_IDLE;
+       end
+@@ -379,6 +386,10 @@
+       op_reg       <= `OP_INVALID;
+       funct7_4_reg <= 1'b0;
+       result_reg   <= 32'd0;
++      share_return0_reg <= 32'd0;
++      share_return1_reg <= 32'd0;
++      share_return_next_q <= 1'b0;
++      share_return_select_q <= 1'b0;
+     end else begin
+       state_q <= state_d;
+ 
+@@ -392,7 +403,16 @@
+ 
+       // Capture result (only when not stalled)
+       if (state_q == ST_ISE_RESULT && !prng_stall) begin
+-        result_reg <= ise_result;
++        if (op_reg == `OP_MASKED_XOR) begin
++          if (share_return_next_q)
++            share_return1_reg <= ise_result;
++          else
++            share_return0_reg <= ise_result;
++          share_return_select_q <= share_return_next_q;
++          share_return_next_q <= ~share_return_next_q;
++        end else begin
++          result_reg <= ise_result;
++        end
+       end
+     end
+   end

@@ -1,0 +1,143 @@
+{
+  "sec_and": [
+    {
+      "upstream_path": "rtl/obi/sec_and.sv",
+      "base_text_sha256": "7ff1d3157823bde40dc65e975ebfcaa4d3b11127c032f3e100e7c619903ad65f",
+      "evaluated_text_sha256": "7ff1d3157823bde40dc65e975ebfcaa4d3b11127c032f3e100e7c619903ad65f",
+      "filename": "sec_and.sv",
+      "patch": null
+    }
+  ],
+  "sec_add": [
+    {
+      "upstream_path": "rtl/obi/sec_and.sv",
+      "base_text_sha256": "7ff1d3157823bde40dc65e975ebfcaa4d3b11127c032f3e100e7c619903ad65f",
+      "evaluated_text_sha256": "d5ea2f222d2121030f67686d0d8232c35a34932739223cc0b6319bef89065a7b",
+      "filename": "sec_and.sv",
+      "patch": "patches/sec_add/sec_and.sv.patch"
+    },
+    {
+      "upstream_path": "rtl/obi/sec_add.sv",
+      "base_text_sha256": "f9cdc5ab9420f2e0489c89be9a19d55a8bc921932cd5e3bc3bc562a3b3f4db8b",
+      "evaluated_text_sha256": "050927d3d078a3bc056649ce24d6030ae13f5df97593940a0062d5b1fe563059",
+      "filename": "sec_add.sv",
+      "patch": "patches/sec_add/sec_add.sv.patch"
+    },
+    {
+      "upstream_path": "rtl/obi/sec_ops.sv",
+      "base_text_sha256": "28db18c5260fb337e1064e827ec89a633b1e595191585780720c60ad68db19d9",
+      "evaluated_text_sha256": "d23816aa66026622a5d27db5189523bdb2de334f1b6f22ff755ac7cd216bb36f",
+      "filename": "sec_ops.sv",
+      "patch": "patches/sec_add/sec_ops.sv.patch"
+    }
+  ],
+  "a2b": [
+    {
+      "upstream_path": "rtl/obi/sec_and.sv",
+      "base_text_sha256": "7ff1d3157823bde40dc65e975ebfcaa4d3b11127c032f3e100e7c619903ad65f",
+      "evaluated_text_sha256": "3d6029dc05ca3819f5e9a596562b1a4f377fab6f2dcaec35ba4f2c666a3392d2",
+      "filename": "sec_and.sv",
+      "patch": "patches/a2b/sec_and.sv.patch"
+    },
+    {
+      "upstream_path": "rtl/obi/sec_add.sv",
+      "base_text_sha256": "f9cdc5ab9420f2e0489c89be9a19d55a8bc921932cd5e3bc3bc562a3b3f4db8b",
+      "evaluated_text_sha256": "2971cfd264eec5fea07ea13a42bb525e5b424cccf93d8794e40a3e237d0f66f2",
+      "filename": "sec_add.sv",
+      "patch": "patches/a2b/sec_add.sv.patch"
+    },
+    {
+      "upstream_path": "rtl/obi/sec_ops.sv",
+      "base_text_sha256": "28db18c5260fb337e1064e827ec89a633b1e595191585780720c60ad68db19d9",
+      "evaluated_text_sha256": "a2404963c719f1b19ab3f036bbe543e18c78f93fc5fb8df71828a945705baa52",
+      "filename": "sec_ops.sv",
+      "patch": "patches/a2b/sec_ops.sv.patch"
+    },
+    {
+      "upstream_path": "rtl/obi/a2b_core.sv",
+      "base_text_sha256": "bcce1973b83d0c52996de9444187a5c9c2ea7603b02032097b1583f4aa51375a",
+      "evaluated_text_sha256": "5c1b6ac1a55b08987444618e0a232ff868083ebca146fa023739fe695bd6916d",
+      "filename": "a2b_core.sv",
+      "patch": "patches/a2b/a2b_core.sv.patch"
+    }
+  ],
+  "interface": [
+    {
+      "upstream_path": "rtl/ise/ise_cbd.sv",
+      "base_text_sha256": "b901b1f6b25c20637325155b83038d6e5c16c0909bcb61f8be9ef1db42d90b6f",
+      "evaluated_text_sha256": "b901b1f6b25c20637325155b83038d6e5c16c0909bcb61f8be9ef1db42d90b6f",
+      "filename": "ise_cbd.sv",
+      "patch": null
+    },
+    {
+      "upstream_path": "rtl/ise/ise_compress.sv",
+      "base_text_sha256": "17b400fbf81fd98035e091c4320284a5254dd38d97c6dbb163cb993a9fea843b",
+      "evaluated_text_sha256": "17b400fbf81fd98035e091c4320284a5254dd38d97c6dbb163cb993a9fea843b",
+      "filename": "ise_compress.sv",
+      "patch": null
+    },
+    {
+      "upstream_path": "rtl/ise/ise_keccak_ops.sv",
+      "base_text_sha256": "5593254c61214703825a9c2070ad411671e712c90ce1721a4be3421912bacabf",
+      "evaluated_text_sha256": "5593254c61214703825a9c2070ad411671e712c90ce1721a4be3421912bacabf",
+      "filename": "ise_keccak_ops.sv",
+      "patch": null
+    },
+    {
+      "upstream_path": "rtl/ise/ise_mask_ops.sv",
+      "base_text_sha256": "8bc2992eb7ba4904baffd27b6f0968dd6ca668cc690b6448aa181c60d9fce624",
+      "evaluated_text_sha256": "8bc2992eb7ba4904baffd27b6f0968dd6ca668cc690b6448aa181c60d9fce624",
+      "filename": "ise_mask_ops.sv",
+      "patch": null
+    },
+    {
+      "upstream_path": "rtl/ise/ise_mldsa_ops.sv",
+      "base_text_sha256": "76e2b9c1589f37f2d41c15240901479ef426dca5f5106dcb40a8c8c84a8526c6",
+      "evaluated_text_sha256": "76e2b9c1589f37f2d41c15240901479ef426dca5f5106dcb40a8c8c84a8526c6",
+      "filename": "ise_mldsa_ops.sv",
+      "patch": null
+    },
+    {
+      "upstream_path": "rtl/ise/ise_mod_reduce.sv",
+      "base_text_sha256": "b1feef95d08a1f9e916d206cdf6f9a6f1a448355a838dc4cb6f21d88cecb7856",
+      "evaluated_text_sha256": "b1feef95d08a1f9e916d206cdf6f9a6f1a448355a838dc4cb6f21d88cecb7856",
+      "filename": "ise_mod_reduce.sv",
+      "patch": null
+    },
+    {
+      "upstream_path": "rtl/ise/ise_ntt_butterfly.sv",
+      "base_text_sha256": "50bc01b089f38baf64dcbadb128a837fe8cf41d152923c2a8361ab2258917546",
+      "evaluated_text_sha256": "50bc01b089f38baf64dcbadb128a837fe8cf41d152923c2a8361ab2258917546",
+      "filename": "ise_ntt_butterfly.sv",
+      "patch": null
+    },
+    {
+      "upstream_path": "rtl/ise/ise_prng.sv",
+      "base_text_sha256": "bfac4b717ef20daa968673b396601041953877ab48ed194b7c4d2ee010a75800",
+      "evaluated_text_sha256": "bfac4b717ef20daa968673b396601041953877ab48ed194b7c4d2ee010a75800",
+      "filename": "ise_prng.sv",
+      "patch": null
+    },
+    {
+      "upstream_path": "rtl/sca_pqc_coprocessor_top.sv",
+      "base_text_sha256": "a6bf659a18a897410bbbea5a787ff0f6be4243a3b2b5377541f1f0b8eb7fb983",
+      "evaluated_text_sha256": "a6bf659a18a897410bbbea5a787ff0f6be4243a3b2b5377541f1f0b8eb7fb983",
+      "filename": "sca_pqc_coprocessor_top.sv",
+      "patch": null
+    },
+    {
+      "upstream_path": "rtl/sca_pqc_greyhound_adapter.sv",
+      "base_text_sha256": "0ccc496c080b59a2ef46dd603a4e36c3a0ac9d4be85a67a1de2581fc7f127467",
+      "evaluated_text_sha256": "0ccc496c080b59a2ef46dd603a4e36c3a0ac9d4be85a67a1de2581fc7f127467",
+      "filename": "sca_pqc_greyhound_adapter.sv",
+      "patch": null
+    },
+    {
+      "upstream_path": "rtl/sca_pqc_pkg.sv",
+      "base_text_sha256": "ebddd3bb0b73769a54f8fa6f7ec023d3772fe25bf579c37a00d8218f20fcdf52",
+      "evaluated_text_sha256": "ebddd3bb0b73769a54f8fa6f7ec023d3772fe25bf579c37a00d8218f20fcdf52",
+      "filename": "sca_pqc_pkg.sv",
+      "patch": null
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+read_verilog -sv -I. sec_add_tsim_top.sv sec_ops.sv sec_and.sv
+hierarchy -check -top sec_add_tsim_top
+proc
+flatten -noscopeinfo
+check
+write_json sec_add_flat.json

@@ -1,0 +1,35 @@
+# DOM SoC minimal-OIM build: WPI sca_pqc_coprocessor_top + CV-X-IF (no CPU).
+# Mirror of the proven tsim_rtl/dom_and flow, scaled up to the full coprocessor.
+# No RTL algorithm changes: this script only elaborates, flattens and emits JSON.
+read_verilog -sv -I./rtl rtl/sca_pqc_pkg.sv
+read_verilog -sv -I./rtl rtl/sca_pqc_coprocessor_top.sv
+read_verilog -sv -I./rtl rtl/ise_cbd.sv
+read_verilog -sv -I./rtl rtl/ise_compress.sv
+read_verilog -sv -I./rtl rtl/ise_keccak_ops.sv
+read_verilog -sv -I./rtl rtl/ise_mask_ops.sv
+read_verilog -sv -I./rtl rtl/ise_mldsa_ops.sv
+read_verilog -sv -I./rtl rtl/ise_mod_reduce.sv
+read_verilog -sv -I./rtl rtl/ise_ntt_butterfly.sv
+read_verilog -sv -I./rtl rtl/ise_prng.sv
+hierarchy -check -top sca_pqc_coprocessor_top
+# Manually run proc sub-passes but SKIP proc_rom: the instruction-decode case
+# statement gets inferred as a $mem ROM by proc_rom, and gen_oim_fullchip.py
+# drops $memrd_v2, leaving decoded_op undriven (all ops echo rs1). Running the
+# rest of proc without proc_rom keeps the decode as explicit mux logic.
+proc_clean
+proc_rmdead
+proc_prune
+proc_init
+proc_arst
+proc_mux
+proc_dlatch
+proc_dff
+proc_memwr
+proc_clean
+opt_expr -keepdc
+opt
+flatten
+opt_clean
+opt -full
+check
+write_json coproc_flat.json

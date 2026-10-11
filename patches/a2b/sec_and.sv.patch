@@ -1,0 +1,29 @@
+--- a/sec_and.sv
++++ b/sec_and.sv
+@@ -1,6 +1,5 @@
+ // Boolean-domain secure AND gadget on shared inputs.
+ 
+-(* keep_hierarchy = "yes" *)
+ module sec_and #(
+   parameter WIDTH = 13
+ ) (
+@@ -28,14 +27,14 @@
+   wire [WIDTH-1:0] cross10 = (a1_i & b0_i) ^ rnd_i;
+ 
+   // -------------------------------------------------------------------------
+-  // REGISTER BARRIER — CRITICAL for probing security / glitch resistance
++  // REGISTER BARRIER 鈥?CRITICAL for probing security / glitch resistance
+   // All four terms must be registered before recombination to prevent
+   // intermediate values from leaking via glitches.
+   // -------------------------------------------------------------------------
+-  (* keep_hierarchy = "yes" *) reg [WIDTH-1:0] reg_inner0;
+-  (* keep_hierarchy = "yes" *) reg [WIDTH-1:0] reg_inner1;
+-  (* keep_hierarchy = "yes" *) reg [WIDTH-1:0] reg_cross01;
+-  (* keep_hierarchy = "yes" *) reg [WIDTH-1:0] reg_cross10;
++  reg [WIDTH-1:0] reg_inner0;
++  reg [WIDTH-1:0] reg_inner1;
++  reg [WIDTH-1:0] reg_cross01;
++  reg [WIDTH-1:0] reg_cross10;
+   reg en_d;
+ 
+   always @(posedge clk_i or negedge rst_ni) begin

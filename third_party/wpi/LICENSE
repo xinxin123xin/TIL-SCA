@@ -1,0 +1,39 @@
+ISC License
+
+Copyright (c) 2026 Dillibabu Shanmugam, Patrick Schaumont
+Worcester Polytechnic Institute
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+----------------------------------------------------------------------
+
+Scope of this license:
+
+This LICENSE file covers all original source files in this
+`pre-silicon-mlkem-tvla/` artefact folder, including:
+
+  scripts/L1/*.py        — L1 RTL-level Welch-t validation and fan-in audit
+  scripts/L35/*.py       — L3.5 per-tile / per-PIP analysis
+  scripts/silicon/*.py   — silicon CCA-PC TVLA validation
+  src/tsim_kernel/tsim.h — tensor-encoded RTL simulator kernel
+  src/oim/*.py           — OIM (Operation-Indexed-Model) C-header generator
+  src/rtl/masking_cone_top*.sv — synthetic wrappers for the masking sub-cone
+  README.md, VALIDATION_LOG.md, TABLE_*.md, BITSTREAM_PROVENANCE.md
+  TOOLCHAIN_PIN.txt
+
+Files copied without modification from upstream tools (Yosys, nextpnr-xilinx,
+prjxray, ChipWhisperer, FIPS-203/204 reference) retain their upstream
+licenses; see TOOLCHAIN_PIN.txt for the upstream URLs and license terms.
+
+The PQC RTL under `src/rtl/ise/` is licensed under the same terms as the
+parent project (see ../LICENSE if present).
