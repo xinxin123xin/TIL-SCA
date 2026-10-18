@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "checksummed_files": 55,
+  "output_campaigns": 15,
+  "masked_output_rows": 75000,
+  "sec_add_profile_rows": 30000,
+  "interface_campaigns": 6,
+  "interface_trace_rows": 30000,
+  "modules_with_indications_beyond_output_HW": 3,
+  "core_replay_max_abs_delta": null,
+  "scope": "feature-level recomputation and archived PQC residual checks; RTL execution is a separate entry point"
+}
