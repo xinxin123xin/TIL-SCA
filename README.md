@@ -1,9 +1,9 @@
 # TIL-SCA: Companion Code and Data
 
 This repository contains the core source code and selected experimental data
-supporting the manuscript **In-Loop Power Side-Channel Analysis in Tensor-Based
-RTL Simulation for PQC Hardware**, by Xin Zhou, Yijun Cui, Chenghua Wang, and
-Weiqiang Liu. Publication metadata will be added when available.
+supporting the manuscript **TIL-SCA: In-Loop Power Side-Channel Analysis with
+RTL Operation Context for PQC Hardware**, by Xin Zhou, Yijun Cui, Chenghua Wang,
+and Weiqiang Liu. Publication metadata will be added when available.
 
 Tensor-Based In-Loop Side-Channel Analysis (TIL-SCA) embeds first-order and
 preselected-pair second-order TVLA reduction into tensor-based RTL execution.
@@ -19,6 +19,7 @@ internal-register transitions, and interface storage.
 | `wrappers/`, `recipes/`, `patches/` | Observation wrappers, per-design Yosys recipes, evaluated RTL adaptations, and split-return-storage intervention |
 | `third_party/wpi/` | Unchanged ISC-licensed bit-level `tsim.h`, OIM generator, and original license |
 | `data/` | Selected trace-level RTL features, paired statistics, and experiment configuration |
+| `data/additional_checks/` | Null distribution, injection sensitivity, per-entry statistics, CP relation, Verilator baseline, PPA proxy, and VCD crossing check (see `docs/ADDITIONAL_CHECKS.md`) |
 | `scripts/` | Feature-level result reproduction and optional RTL rebuilding |
 | `provenance/` | Original workspace-relative source names, SHA-256 hashes, transformations, and upstream file identities |
 
@@ -44,6 +45,26 @@ are written to `results/`:
 - `figure2_points.csv`: signed mean-HD contrasts for all five adder entries;
 - `intervention_recomputed.csv`: recomputed interface statistics;
 - `verification.json`: numerical, functional-identity, and matching checks.
+
+## Additional validation
+
+`data/additional_checks/` and `scripts/reproduce_additional_checks.py` collect
+the additional checks added in a later revision of the manuscript: the
+896-position family-wise null (max `|t|` = 4.43, 0/200 above 4.5), the
+single-event injection sensitivity (`delta_80` = 0.48 bit; 85% detection and
+97.5% localization at 0.5 bit), the per-entry `sec_add` statistic (entry 3 =
+97.61--101.30), the CP/plaintext-HW relation, the Verilator baseline (10x CBD2,
+14x NTT, ~980x AES boundary case), the split-storage PPA proxy (+66 FF bits,
++12 cells), and the VCD crossing check (0/896 HD, result, and zeta mismatches).
+Run:
+
+```bash
+python scripts/reproduce_additional_checks.py
+```
+
+The script uses only the standard library and exits non-zero if any released
+number does not reproduce. See `docs/ADDITIONAL_CHECKS.md` for provenance and
+limitations.
 
 With a GCC/Clang C compiler, also check the extracted C accumulators against
 independent two-pass Python statistics:
