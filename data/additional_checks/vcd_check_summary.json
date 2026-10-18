@@ -1,0 +1,11 @@
+{
+  "design": "NTT-256",
+  "traces": 1,
+  "events": 896,
+  "hd_mismatch": 0,
+  "result_mismatch": 0,
+  "zeta_mismatch": 0,
+  "vcd_bytes": 4470346,
+  "sampled_crossings": [0, 200, 400, 513, 700],
+  "note": "Verilator 5.050 VCD of the unchanged RTL; reconstructed HD equals the OIM in-loop feature matrix row 0 for all 896 events."
+}

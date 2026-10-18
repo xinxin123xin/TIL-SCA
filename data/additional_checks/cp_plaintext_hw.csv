@@ -1,0 +1,6 @@
+case,W,HW_fixed,HW_random_mean,CP_t,CP_mean_fixed,CP_mean_random,predicted_mean_fixed,predicted_mean_random
+sec_and seed0,32,32,8.0,-43.0561,-8.2419,4.2479,-8.0,4.0
+sec_add seed0,13,12,6.5,-26.1561,-2.6549,0.0009,-2.75,0.0
+sec_add seed1,13,12,6.5,-26.0921,-2.7291,-0.0494,-2.75,0.0
+a2b seed0,13,5,6.5,-0.0239,0.435,0.4369,0.75,0.0
+a2b seed1,13,5,6.5,-0.5069,0.4567,0.4963,0.75,0.0

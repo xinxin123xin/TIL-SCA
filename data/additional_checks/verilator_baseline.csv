@@ -1,0 +1,4 @@
+design,N,events,oim_s,verilator_s,ratio,verilator_rss_mib,note
+CBD2-256,100,25600,1.6111,0.16,10.07,3.84,"in-loop moments vs functional TB, same frozen stimuli"
+NTT-256,100,89600,8.60,0.63,13.65,3.90,"in-loop reduction vs functional TB, same frozen stimuli"
+AES-128,5000,,24.418,0.02483,983.5,,"short-transaction boundary case"
