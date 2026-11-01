@@ -2,19 +2,20 @@
 
 This directory documents the additional checks added in a later revision of
 **TIL-SCA: In-Loop Power Side-Channel Analysis with RTL Operation Context for
-PQC Hardware**. The released CSVs are the exact inputs used by
-`scripts/reproduce_additional_checks.py`; the script re-derives every number
-quoted in the manuscript and exits non-zero on any mismatch.
+PQC Hardware**. The released summaries are the inputs used by
+`scripts/reproduce_additional_checks.py`; the script checks selected values and
+derived summaries within its coded tolerances and exits non-zero if a check
+fails. It does not regenerate the source experiments.
 
 ## Files
 
 | File | Contents | Manuscript statement |
 |---|---|---|
-| `data/additional_checks/null_maxabs.csv` | 200 label-permutation draws of `max|t|` over the 896 NTT positions | Family-wise null: max 4.43, p99 4.17, 0/200 above 4.5 |
+| `data/additional_checks/null_maxabs.csv` | 200 label-permutation draws of `max\|t\|` over the 896 NTT positions | Family-wise null: max 4.43, p99 4.17, 0/200 above 4.5 |
 | `data/additional_checks/injection_sweep.csv` | Detection/localization probability versus injected mean shift (0.1--1.5 bit) | `delta_80` = 0.48 bit; 85% detection and 97.5% localization at 0.5 bit |
 | `data/additional_checks/sec_add_per_entry_t.csv` | Three seeds, five FSM entries, both `g0_r`/`g1_r` | Entry 3 = 97.61--101.30; five-entry average 48.2--50.8 |
 | `data/additional_checks/cp_plaintext_hw.csv` | Predicted `(W-2*HW)/4` versus observed CP mean | CP mean follows the fixed plaintext Hamming weight; `a2b_core` CP near zero because `x=1234` is near-balanced |
-| `data/additional_checks/verilator_baseline.csv` | OIM/tsim versus Verilator wall time, N=100 | 10x CBD2-256, 14x NTT-256, ~980x short-transaction AES boundary case |
+| `data/additional_checks/verilator_baseline.csv` | OIM/tsim versus Verilator wall time; CBD2/NTT N=100, AES N=5000 | OIM/tsim-to-Verilator wall-time ratios: 10x CBD2-256, 14x NTT-256, ~980x short-transaction AES boundary case |
 | `data/additional_checks/ppa_split_storage.csv` | Generic-cell and flip-flop counts before/after the two-bank split | +66 FF bits, +12 cells (+3.3%), no timing-closure claim |
 | `data/additional_checks/vcd_check_summary.json` | Verilator VCD check over one NTT trace | 0/896 HD, result, and zeta mismatches |
 | `data/additional_checks/vcd_crossing_check.csv` | Five sampled crossings with operands, result, and HD | Crossings confirmed on the RTL waveform |
@@ -37,18 +38,20 @@ HD values per trace. Reporting the third entry instead of the trace-level mean
 raises the statistic from 48.2--50.8 to 97.61--101.30 and shows that the leak is
 concentrated in one entry.
 
-**CP and plaintext Hamming weight.** For Boolean two-share encoding, the per-bit
-centered product has expectation `(W-2*HW(x))/4`; the observed CP means match
-this prediction (within 0.4) for `sec_and`, `sec_add`, and `a2b_core`. A balanced
-fixed plaintext removes the inherent term, so only a residual crossing then
-indicates a defect beyond the second-order dependence of a two-share design.
+**CP and plaintext Hamming weight.** For ideal Boolean two-share encoding with
+uniform independent mask bits, the product of the two share HW deviations from
+`W/2` has expectation `(W-2*HW(x))/4`. The observed CP means are within 0.4 of
+this prediction for `sec_and`, `sec_add`, and `a2b_core`. A balanced fixed
+plaintext cancels this ideal expectation; a residual crossing still requires
+assessment under the chosen leakage and security model before diagnosing a defect.
 
 **Verilator baseline.** The unchanged RTL is run through the existing direct-WPI
 SystemVerilog testbenches with Verilator 5.050 (`--binary --timing`) on the same
 frozen N=100 stimuli. OIM/tsim is 10x (CBD2-256) and 14x (NTT-256) slower; the
 AES-128 number is the short-transaction boundary case from the earlier benchmark.
-Verilator testbenches use `#1` delays and a 10 ns clock, so the ratios are a
-lower bound on the gap.
+The CBD2/NTT Verilator testbenches use `#1` delays and a 10 ns clock. These
+workload-specific timings compare in-loop reduction with functional testbenches;
+the Verilator comparator does not perform the same statistical analysis.
 
 **PPA proxy.** Yosys 0.65 `read_verilog; hierarchy; flatten; proc; opt; stat` on
 the baseline and split-storage coprocessor tops. Values are generic cells and FF
@@ -75,8 +78,14 @@ python scripts/reproduce_additional_checks.py
 The source runs are archived in the private experiment tree: the null and
 injection campaign, the per-entry tables, the CP re-analysis, the Yosys PPA logs,
 the CBD2/NTT Verilator baselines, and the VCD dump with its parser. The released
-CSVs are derived from those runs and are sufficient to reproduce every reported
-number.
+CSVs contain derived records, not the raw inputs needed to rerun all those
+experiments. The script recomputes null-distribution summaries, interpolates the
+injection table, selects archived per-entry statistics, compares archived CP
+means, computes CBD2/NTT timing ratios, and checks stored PPA deltas and VCD
+event/HD/result counts. It skips the AES timing row and does not check the zeta
+mismatch field or read `vcd_crossing_check.csv`.
 
-The full VCD is 4.47 MB and is not bundled; the released summary and the five
-sampled crossings are sufficient to recheck the reported claims.
+The full VCD is 4.47 MB and is not bundled. The released summary records the
+archived 896-event check, and five sampled crossings are available for inspection.
+Independently rerunning the full comparison requires the omitted waveform,
+parser, and matching OIM feature row.
