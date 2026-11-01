@@ -50,6 +50,7 @@ campaigns. Full PQC execution is outside this compact build entry point.
 ## Windows compiler selection
 
 The compiler was selected through `CC`, with another GCC installation earlier
-on the parent process PATH. Both Python entry points successfully compiled
-using the selected compiler's own `bin` directory at the front of their
-compiler subprocess PATH. See `REPRODUCING_RTL.md` for the PowerShell setup.
+on the parent process PATH. `scripts/reproduce.py` and `scripts/build_rtl.py`
+successfully compiled using the selected compiler's own `bin` directory at the
+front of their compiler subprocess PATH. See `REPRODUCING_RTL.md` for the
+PowerShell setup.
