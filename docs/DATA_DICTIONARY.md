@@ -117,4 +117,5 @@ order, while preserving the paper's archived numerical results.
 workspace-relative path and raw SHA-256. Transformations select columns, add
 campaign labels, concatenate campaigns, or pivot entry rows. `SHA256SUMS`
 anchors the released files. The generated experiment data follow the root MIT
-license. A release tag should be used when referencing this artifact.
+license. Reference the artifact version and full commit SHA; include a release
+tag only if it exists and resolves to that snapshot.
