@@ -1,8 +1,9 @@
 cff-version: 1.2.0
-message: "This repository supports the TIL-SCA manuscript. Please cite the manuscript and the release version you use."
+message: "This repository supports the TIL-SCA manuscript. Please cite the manuscript and the artifact version and full commit SHA you use."
 title: "TIL-SCA: Companion Code and Data"
 type: software
 version: 0.1.0
+repository-code: "https://github.com/xinxin123xin/TIL-SCA"
 license: MIT
 authors:
   - family-names: Zhou
@@ -15,7 +16,7 @@ authors:
     given-names: Weiqiang
 preferred-citation:
   type: unpublished
-  title: "In-Loop Power Side-Channel Analysis in Tensor-Based RTL Simulation for PQC Hardware"
+  title: "TIL-SCA: In-Loop Power Side-Channel Analysis with RTL Operation Context for PQC Hardware"
   authors:
     - family-names: Zhou
       given-names: Xin
