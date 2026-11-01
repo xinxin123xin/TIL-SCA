@@ -26,8 +26,9 @@ $env:Path = (Split-Path $env:CC) + ';' + $env:Path
 python scripts/reproduce.py --check-core
 ```
 
-Both Python scripts honor `CC` (or an explicit `--cc`) and prepend that
-compiler's `bin` directory to the compiler subprocess PATH. The PowerShell
+`scripts/reproduce.py` and `scripts/build_rtl.py` honor `CC` (or an explicit
+`--cc`) and prepend that compiler's `bin` directory to the compiler subprocess
+PATH. The PowerShell
 PATH setting also applies when running generated executables manually. These
 settings affect the current shell and its child processes; no system-wide
 PATH change is required. `gcc --version` alone does not verify that `cc1.exe`
