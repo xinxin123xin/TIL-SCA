@@ -31,7 +31,8 @@ PQC trace-wise matrices and complete project history are outside this release.
 
 ## Quick start: recompute the released results
 
-Python 3.10 or newer and its standard library are sufficient:
+Run from the repository root with Python 3.10 or newer; its standard library is
+sufficient:
 
 ```bash
 python scripts/reproduce.py
@@ -53,18 +54,19 @@ the additional checks added in a later revision of the manuscript: the
 896-position family-wise null (max `|t|` = 4.43, 0/200 above 4.5), the
 single-event injection sensitivity (`delta_80` = 0.48 bit; 85% detection and
 97.5% localization at 0.5 bit), the per-entry `sec_add` statistic (entry 3 =
-97.61--101.30), the CP/plaintext-HW relation, the Verilator baseline (10x CBD2,
-14x NTT, ~980x AES boundary case), the split-storage PPA proxy (+66 FF bits,
-+12 cells), and the VCD crossing check (0/896 HD, result, and zeta mismatches).
+97.61--101.30), the CP/plaintext-HW relation, the OIM/tsim-to-Verilator wall-time
+ratios (10x CBD2, 14x NTT, ~980x AES boundary case), the split-storage PPA proxy
+(+66 FF bits, +12 cells), and the VCD crossing check (0/896 HD, result, and zeta
+mismatches).
 Run:
 
 ```bash
 python scripts/reproduce_additional_checks.py
 ```
 
-The script uses only the standard library and exits non-zero if any released
-number does not reproduce. See `docs/ADDITIONAL_CHECKS.md` for provenance and
-limitations.
+The script uses only the standard library and exits non-zero if a coded check
+of the released summaries fails. It does not regenerate the source experiments.
+See `docs/ADDITIONAL_CHECKS.md` for the checked scope, provenance, and limitations.
 
 With a GCC/Clang C compiler, also check the extracted C accumulators against
 independent two-pass Python statistics:
@@ -75,9 +77,10 @@ python scripts/reproduce.py --check-core --cc gcc
 
 This replays archived features through the actual accumulator routines.
 The original execution-integrated implementation is in `drivers/`.
-Both scripts accept `--cc` and the `CC` environment variable. They prepend the
-selected compiler's `bin` directory to its subprocess PATH; see the Windows
-example in [RTL reproduction](docs/REPRODUCING_RTL.md).
+`scripts/reproduce.py` and `scripts/build_rtl.py` accept `--cc` and the `CC`
+environment variable. They prepend the selected compiler's `bin` directory to
+its subprocess PATH; see the Windows example in
+[RTL reproduction](docs/REPRODUCING_RTL.md).
 
 `SHA256SUMS` covers source, data, provenance, and license files. After an
 intentional change to these files, run `python scripts/update_checksums.py`
@@ -128,8 +131,15 @@ TIL-SCA-authored materials use the MIT license; the bundled WPI runtime and
 generator retain their ISC license. See [third-party notices](THIRD_PARTY_NOTICES.md).
 The source data are RTL simulation features rather than measured power traces.
 
-Please cite the manuscript and the release used. `CITATION.cff` supplies the
-current title and authors without assuming an acceptance status or DOI.
+Please cite the manuscript and the artifact snapshot used. `CITATION.cff`
+separates the software title/version from the manuscript's `preferred-citation`,
+which is recorded as `unpublished` with no DOI or confirmed publication venue.
+The manuscript title follows the README revision in commit `5212063`.
+
+The declared artifact version is `0.1.0`; this version field alone does not
+identify an immutable snapshot. Include the repository URL and the full commit
+SHA from `git rev-parse HEAD` when citing or reporting reproduction. Use a release
+tag only if it exists and resolves to the snapshot used.
 
 ## 中文说明
 
